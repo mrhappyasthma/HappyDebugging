@@ -14,9 +14,9 @@ them.)
 the file first.)
 3. Add the following command, substituting in the path for your local
 `happy_debugging.py`:
-```
-command script import /path/to/HappyDebugging/happy_debugging.py
-```
+    ```
+    command script import /path/to/HappyDebugging/happy_debugging.py
+    ```
 
 ## Command Glossary
 
