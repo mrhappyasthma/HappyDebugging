@@ -18,6 +18,18 @@ the file first.)
     command script import /path/to/HappyDebugging/happy_debugging.py
     ```
 
+## Testing
+
+The test environment requires an iOS app to be running on the simulator.
+Therefore, the project includes `TestApp`, a folder containing a dummy
+Xcode project that we can attach a debugger to for testing.
+
+1. Open `TestApp/TestApp.xcodeproj` in Xcode.
+2. Press `⌘ + R` to run the dummy app.
+3. Wait until the simulator launches and runs the app.
+4. Execute `./run_all_tests.py`.
+5. Once you're done, you can close Xcode and the simulator.
+
 ## Command Glossary
 
 | Command | Description                                       |
