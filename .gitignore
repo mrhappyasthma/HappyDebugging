@@ -1,2 +1,5 @@
 *.pyc
 .DS_STORE
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
