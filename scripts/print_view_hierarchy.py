@@ -3,7 +3,7 @@
 Usage: pv
 """
 def print_view_hierarchy(debugger, command, result, internal_dict):
-  debugger.HandleCommand('po [[UIWindow keyWindow] recursiveDescription]')
+  debugger.GetCommandInterpreter().HandleCommand('po [[UIWindow keyWindow] recursiveDescription]', result)
 
 
 def __lldb_init_module(debugger, internal_dict):
