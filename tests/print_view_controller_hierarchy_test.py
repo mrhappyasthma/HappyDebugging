@@ -32,4 +32,4 @@ class PrintViewControllerHierarchyTest(unittest.TestCase):
     expected_output_regex =  r'<ViewController 0x\w{12}>, state: appeared, view: <UIView 0x\w{12}>'
     self.assertTrue(re.match(expected_output_regex,
                     result.GetOutput().rstrip()))
-    debugger.Terminate()
+    debugger.DeleteTarget(target)
