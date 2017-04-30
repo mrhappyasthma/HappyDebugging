@@ -1,3 +1,4 @@
+"""Tests for scripts/print_view_controller_hierarchy.py."""
 import re
 import unittest
 
@@ -12,6 +13,7 @@ from scripts import print_view_controller_hierarchy
 
 class PrintViewControllerHierarchyTest(unittest.TestCase):
   def testPrintViewControllerHierarchy(self):
+    """Tests the expected output of the |pvc| command."""
     debugger = lldb.SBDebugger.Create()
     debugger.SetAsync(False)
     target = debugger.CreateTarget('')
