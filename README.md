@@ -36,3 +36,4 @@ Xcode project that we can attach a debugger to for testing.
 | ------- | ------------------------------------------------- |
 | pv      | Prints out the current view hierarchy.            |
 | pvc     | Prints out the current view controller hierarchy. |
+| screenshot <UIView instance> | Saves a screenshot of the given UIView instance and opens it in finder. Multiple calls will overwrite one another, so save a local copy if needed. |
