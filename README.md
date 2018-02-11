@@ -42,3 +42,4 @@ Xcode project that we can attach a debugger to for testing.
 | pbounds `<object>` | Prints the `bounds` of an object as a `CGRect`. |
 | setframe `<object>` `<x>` `<y>` `<width>` `<height>` | Sets the `frame` of an object with 4 arguments cooresponding to each field of a `CGRect`. |
 | setbounds `<object>` `<x>` `<y>` `<width>` `<height>` | Sets the `bounds` of an object with 4 arguments cooresponding to each field of a `CGRect`. |
+| ivars `<object>` | Prints out all ivars for a given object. (Warning: a bit hacky, may be slightly wrong sometimes.) |
