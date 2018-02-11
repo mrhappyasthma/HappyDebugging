@@ -36,9 +36,9 @@ Xcode project that we can attach a debugger to for testing.
 | ------- | ------------------------------------------------- |
 | pv      | Prints out the current view hierarchy.            |
 | pvc     | Prints out the current view controller hierarchy. |
-| screenshot \<UIView instance\> | Saves a screenshot of the given `UIView` instance and opens it in Preview. Multiple calls will overwrite the temporary file, so save a local copy of the `.png` file if needed. |
-| png \<UIImage instance\> | Converts a `UIImage` into a `.png` file and opens it in Preview. Multiple calls will override the temporary file, so save a local copy of the `.png` file if needed. |
-| pframe \<object\> | Prints the `frame` of an object as a `CGRect`. |
-| pbounds \<object\> | Prints the `bounds` of an object as a `CGRect`. |
-| setframe \<object\> \<x\> \<y\> \<width\> \<height\> | Sets the `frame` of an object with 4 arguments cooresponding to each field of a `CGRect`. |
-| setbounds \<object\> \<x\> \<y\> \<width\> \<height\> | Sets the `bounds` of an object with 4 arguments cooresponding to each field of a `CGRect`. |
+| screenshot `\<UIView instance\>` | Saves a screenshot of the given `UIView` instance and opens it in Preview. Multiple calls will overwrite the temporary file, so save a local copy of the `.png` file if needed. |
+| png `\<UIImage instance\>` | Converts a `UIImage` into a `.png` file and opens it in Preview. Multiple calls will override the temporary file, so save a local copy of the `.png` file if needed. |
+| pframe `\<object\>` | Prints the `frame` of an object as a `CGRect`. |
+| pbounds `\<object\>` | Prints the `bounds` of an object as a `CGRect`. |
+| setframe `\<object\>` `\<x\>` `\<y\>` `\<width\>` `\<height\>` | Sets the `frame` of an object with 4 arguments cooresponding to each field of a `CGRect`. |
+| setbounds `\<object\>` `\<x\>` `\<y\>` `\<width\>` `\<height\>` | Sets the `bounds` of an object with 4 arguments cooresponding to each field of a `CGRect`. |
