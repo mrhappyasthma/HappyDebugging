@@ -1,5 +1,5 @@
 """Print out all the ivars of an object.
-  
+
 NOTE: The parsing of the ivar type encoding is very hacky, but it should
        be sufficient for most cases. Therefore the resulting list may have
        mistakes or could be missing some ivars whose type could not be parsed.
@@ -28,7 +28,7 @@ def ivars(debugger, command, result, internal_dict):
       Ivar ivar = ivars[i];
       const char *ivarName = ivar_getName(ivar);
       NSString *name = [NSString stringWithFormat: @"%s", ivarName];
-      
+
       //////////////////////////////////////////////////////////////////////////////////////
       // Decode ivar type. Since LLDB does not allow defining functions, I'm inlining all //
       // of the code here.                                                                //
@@ -53,17 +53,17 @@ def ivars(debugger, command, result, internal_dict):
         @"#" : @"Class",
         @":" : @"SEL"
       }};
-      
+
       NSMutableString *finalEncoding = [NSMutableString string];
       for (NSUInteger j = 0; j < typeEncoding.length; j++) {{
         unichar c = [typeEncoding characterAtIndex:j];
-      
+
         // Primitive types
         NSString *type = [basicTypes objectForKey:[NSString stringWithFormat:@"%c", c]];
         if (type) {{
           [finalEncoding insertString:type atIndex:0];
         }}
-      
+
         // Objective-C objects
         if (c == '@') {{
           if ((typeEncoding.length-1 > j) && ([typeEncoding characterAtIndex:1] == '"')) {{
@@ -78,7 +78,7 @@ def ivars(debugger, command, result, internal_dict):
           }}
           [finalEncoding insertString:@"id" atIndex:0];
         }}
-      
+
         // Arrays
         if (c == '[') {{
           unichar nextChar = [typeEncoding characterAtIndex:++j];
@@ -90,7 +90,7 @@ def ivars(debugger, command, result, internal_dict):
           j--;  // Manual correct to the index.
           [finalEncoding appendFormat:@"%@]", arraySize];
         }}
-      
+
         // Structs and Unions
         if (c == '{{' || c == '(') {{
           unichar nextChar = [typeEncoding characterAtIndex:++j];
@@ -104,7 +104,7 @@ def ivars(debugger, command, result, internal_dict):
                               atIndex:0];
           break;  // Don't traverse their types. It's too verbose.
         }}
-      
+
         // Const keyword
         if (c == 'r') {{
           if (finalEncoding.length && ([finalEncoding characterAtIndex:finalEncoding.length-1] != '*')) {{
@@ -112,12 +112,12 @@ def ivars(debugger, command, result, internal_dict):
           }}
           [finalEncoding appendString:@" const "];
         }}
-      
+
         // Pointers
         if (c == '^') {{
           [finalEncoding appendString:@"*"];
         }}
-      
+
         // "Unknown" meaning function pointer, block, or other.
         if (c == '?') {{
           if (j == 0) {{
