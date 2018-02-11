@@ -167,7 +167,7 @@ def ivars(debugger, command, result, internal_dict):
   if ivar_array is None:
     print 'ERROR: Could not parse ivars for object (' + args[0] + ')'
     return
-  print ivar_array
+  result.Print(ivar_array)
 
 def __lldb_init_module(debugger, internal_dict):
   debugger.HandleCommand('command script add -f ivars.ivars ivars')
