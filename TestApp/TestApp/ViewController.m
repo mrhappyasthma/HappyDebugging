@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
+
+  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 100.0f)];
+  view.tag = 19;  // Arbitrary tag to identify the view in a test.
+  view.backgroundColor = UIColor.greenColor;
+  [self.view addSubview:view];
 }
 
 
