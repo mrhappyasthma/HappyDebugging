@@ -8,15 +8,48 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+/** A dummy struct to use as a struct type. */
+typedef struct DummyStruct {
+  char *aString;
+  int anInt;
+  int *anIntPtr;
+  int *_z;
+  int _p[5][5];
+  int *_r[1];
+} DummyStruct;
 
-@end
+/** A dummy union to use as a union type. */
+typedef union DummyUnion
+{
+  float f;
+  char c;
+  int a;
+} DummyUnion;
 
-@implementation AppDelegate
 
+@implementation AppDelegate {
+  // All of the following ivars are dummy ivars to be used in unit tests.
+  NSString *_test;
+  int _x;
+  int **_ptr;
+  int _y[5];
+  NSObject * const*_temp;
+  id _something;
+  DummyStruct _t[4];
+  struct DummyStruct *_example;
+  DummyUnion _someUnion;
+  NSString * (^_myBlock)(int x, NSString *str);
+  NSString * (^_myBlockEmpty)(int x, NSString *str);
+  char *(*_myPointer)(int x);
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Override point for customization after application launch.
+  // Set some ivar values to trigger different type encodings.
+  _myBlock = ^NSString *(int x, NSString *str) {
+    return @"";
+  };
+  _test = @"test";
+  
   return YES;
 }
 
