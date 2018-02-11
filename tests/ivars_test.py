@@ -21,7 +21,6 @@ class IvarsTest(unittest.TestCase):
     if self.debugger and self.target:
       self.debugger.DeleteTarget(self.target)
 
-
   def testIvars(self):
     """Tests the expected output of the |ivars <object>| command."""
     self.debugger = lldb.SBDebugger.Create()
