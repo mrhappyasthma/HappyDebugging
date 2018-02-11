@@ -1,4 +1,4 @@
-"""Tests for scripts/pframe.py.
+"""Tests for scripts/setframe.py.
 
 NOTE: This test assumes that `TestApp` has a UIView with `tag` value
       of 19. That view must have the following frame: {0, 0, 100, 100}.
@@ -38,7 +38,7 @@ class SetFrameTest(unittest.TestCase):
       # Detach debugger.
       self.debugger.DeleteTarget(self.target)
 
-  def testPFrame(self):
+  def testSetFrame(self):
     """Tests the expected output of the |setframe <instance> <x> <y> <width>< height>| command."""
     self.debugger = lldb.SBDebugger.Create()
     self.debugger.SetAsync(False)
