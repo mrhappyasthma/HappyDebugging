@@ -26,6 +26,6 @@ class PrintViewHierarchyTest(unittest.TestCase):
     result = lldb.SBCommandReturnObject()
     print_view_hierarchy.print_view_hierarchy(debugger, None, result, None)
     self.assertTrue(result.Succeeded())
-    expected_output_regex =  r'<UIWindow: 0x\w{12}; frame = \(0 0; 414 736\); autoresize = W\+H; gestureRecognizers = <NSArray: 0x\w{12}>; layer = <UIWindowLayer: 0x\w{12}>>\n   \|'
+    expected_output_regex =  r'<UIWindow: 0x\w{12}; frame = \(0 0; \w{3} \w{3}\); autoresize = W\+H; gestureRecognizers = <NSArray: 0x\w{12}>; layer = <UIWindowLayer: 0x\w{12}>>\n   \|'
     self.assertTrue(re.search(expected_output_regex, result.GetOutput(), re.M))
     debugger.DeleteTarget(target)
