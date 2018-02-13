@@ -34,25 +34,25 @@ def ivars(debugger, command, result, internal_dict):
       // of the code here.                                                                //
       //////////////////////////////////////////////////////////////////////////////////////
       NSString *typeEncoding = [NSString stringWithUTF8String:ivar_getTypeEncoding(ivar)];
-      NSDictionary *basicTypes = @{{
-        @"c" : @"char (or BOOL)",
-        @"i" : @"int",
-        @"s" : @"short",
-        @"l" : @"long",
-        @"q" : @"long long",
-        @"C" : @"unsigned char",
-        @"I" : @"unsinged int",
-        @"S" : @"unsigned short",
-        @"L" : @"unsigned long",
-        @"Q" : @"unsigned long long",
-        @"f" : @"float",
-        @"d" : @"double",
-        @"B" : @"bool",
-        @"v" : @"void",
-        @"*" : @"char *",
-        @"#" : @"Class",
-        @":" : @"SEL"
-      }};
+      NSDictionary *basicTypes = [NSDictionary dictionaryWithObjectsAndKeys:
+        @"char (or BOOL)", @"c",
+        @"int", @"i",
+        @"short", @"s",
+        @"long", @"l",
+        @"long long", @"q",
+        @"unsigned char", @"C",
+        @"unsinged int", @"I",
+        @"unsigned short", @"S",
+        @"unsigned long", @"L",
+        @"unsigned long long", @"Q",
+        @"float", @"f",
+        @"double", @"d",
+        @"bool", @"B",
+        @"void", @"v",
+        @"char *", @"*",
+        @"Class", @"#",
+        @"SEL", @":",
+        nil];
 
       NSMutableString *finalEncoding = [NSMutableString string];
       for (NSUInteger j = 0; j < typeEncoding.length; j++) {{
