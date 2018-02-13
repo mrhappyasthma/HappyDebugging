@@ -49,7 +49,7 @@ typedef union DummyUnion
     return @"";
   };
   _test = @"test";
-  
+
   return YES;
 }
 
