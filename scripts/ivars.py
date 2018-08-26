@@ -154,20 +154,20 @@ def ivars(debugger, command, result, internal_dict):
   """.format(args[0])
   target = debugger.GetSelectedTarget()
   if target is None:
-    print 'ERROR: Could not get selected target.'
+    result.Println('ERROR: Could not get selected target.')
     return
   ret_value = target.EvaluateExpression(cmd)
   if ret_value is None:
-    print 'ERROR: Invalid return value from expression: ' + cmd
+    result.Println('ERROR: Invalid return value from expression: ' + cmd)
     return
   if not ret_value.GetError().Success():
-    print ret_value.GetError()
+    result.Println("{0}".format(ret_value.GetError()))
     return
   ivar_array = ret_value.GetObjectDescription()
   if ivar_array is None:
-    print 'ERROR: Could not parse ivars for object (' + args[0] + ')'
+    result.Printn('ERROR: Could not parse ivars for object (' + args[0] + ')')
     return
-  result.Print(ivar_array)
+  result.Println(ivar_array)
 
 def __lldb_init_module(debugger, internal_dict):
   debugger.HandleCommand('command script add -f ivars.ivars ivars')
