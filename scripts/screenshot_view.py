@@ -1,18 +1,19 @@
-"""Screenshots a UIView and saves it as a .png file. Then opens it in finder.
-
-Note: The file will be saved in the NSDocumentDirectory as "screenshot_view.png".
-      Subsequent calls into this command will overwrite that file, so it is
-      recommended that you make a local copy of the file if you wish to keep it
-      long term.
-
-Usage: screenshot <UIView instance>
-"""
 import lldb
 import shlex
 
 from subprocess import call
 
 def screenshot_view(debugger, command, result, internal_dict):
+  """Screenshots a UIView and saves it as a .png file. Then opens it in finder.
+
+  Note: The file will be saved in the NSDocumentDirectory as "screenshot_view.png".
+        Subsequent calls into this command will overwrite that file, so it is
+        recommended that you make a local copy of the file if you wish to keep
+        it long term.
+
+  Usage:
+    screenshot <UIView_instance>
+  """
   args = shlex.split(command)
   if len(args) != 1:
     result.Println('ERROR: Please enter the command as "screenshot <UIView instance>".')
@@ -60,4 +61,7 @@ def screenshot_view(debugger, command, result, internal_dict):
   result.Println('Screenshot saved:\n' + screenshot_path)
 
 def __lldb_init_module(debugger, internal_dict):
-  debugger.HandleCommand('command script add -f screenshot_view.screenshot_view screenshot')
+  cmd = ('command script add '
+         '-f screenshot_view.screenshot_view screenshot '
+         '-h "Screenshots a UIView and saves it as a .png. Then opens it in finder."')
+  debugger.HandleCommand(cmd)

@@ -1,11 +1,12 @@
-"""Sets the `bounds` of an object.
-
-Usage: setbounds <instance> <x> <y> <width> <height>
-"""
 import lldb
 import shlex
 
 def set_bounds(debugger, command, result, internal_dict):
+  """Sets the bounds of an object.
+
+  Usage:
+    setbounds <instance> <x> <y> <width> <height>
+  """
   args = shlex.split(command)
   if len(args) != 5:
     result.Println('ERROR: Please enter the command as "setbounds <instance> <x> <y> <width> <height>".')
@@ -22,4 +23,7 @@ def set_bounds(debugger, command, result, internal_dict):
   debugger.GetCommandInterpreter().HandleCommand(cmd, result)
 
 def __lldb_init_module(debugger, internal_dict):
-  debugger.HandleCommand('command script add -f set_bounds.set_bounds setbounds')
+  cmd = ('command script add '
+         '-f set_bounds.set_bounds setbounds '
+         '-h "Sets the bounds of an object."')
+  debugger.HandleCommand(cmd)

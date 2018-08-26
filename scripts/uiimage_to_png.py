@@ -1,18 +1,19 @@
-"""Converts a UIImage to a .png file. Then opens it in finder.
-
-Note: The file will be saved in the NSDocumentDirectory as "uiimage.png".
-      Subsequent calls into this command will overwrite that file, so it is
-      recommended that you make a local copy of the file if you wish to keep it
-      long term.
-
-Usage: png <UIImage instance>
-"""
 import lldb
 import shlex
 
 from subprocess import call
 
 def uiimage_to_png(debugger, command, result, internal_dict):
+  """Converts a UIImage to a .png file. Then opens it in finder.
+
+  Note: The file will be saved in the NSDocumentDirectory as "uiimage.png".
+        Subsequent calls into this command will overwrite that file, so it is
+        recommended that you make a local copy of the file if you wish to keep
+        it long term.
+
+  Usage:
+    png <UIImage instance>
+  """
   args = shlex.split(command)
   if len(args) != 1:
     result.Println('ERROR: Please enter the command as "png <UIImage instance>".')
@@ -52,4 +53,7 @@ def uiimage_to_png(debugger, command, result, internal_dict):
   result.Println('UIImage saved to:\n' + png_path)
 
 def __lldb_init_module(debugger, internal_dict):
-  debugger.HandleCommand('command script add -f uiimage_to_png.uiimage_to_png png')
+  cmd = ('command script add '
+         '-f uiimage_to_png.uiimage_to_png png '
+         '-h "Converts a UIImage to a .png file, and then opens it in finder."')
+  debugger.HandleCommand(cmd)

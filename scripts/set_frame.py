@@ -1,11 +1,12 @@
-"""Sets the `frame` of an object.
-
-Usage: setframe <instance> <x> <y> <width> <height>
-"""
 import lldb
 import shlex
 
 def set_frame(debugger, command, result, internal_dict):
+  """Sets the frame of an object.
+
+  Usage:
+    setframe <instance> <x> <y> <width> <height>
+  """
   args = shlex.split(command)
   if len(args) != 5:
     result.Println('ERROR: Please enter the command as "setframe <instance> <x> <y> <width> <height>".')
@@ -22,4 +23,7 @@ def set_frame(debugger, command, result, internal_dict):
   debugger.GetCommandInterpreter().HandleCommand(cmd, result)
 
 def __lldb_init_module(debugger, internal_dict):
-  debugger.HandleCommand('command script add -f set_frame.set_frame setframe')
+  cmd = ('command script add '
+         '-f set_frame.set_frame setframe '
+         '-h "Sets the frame of an object."')
+  debugger.HandleCommand(cmd)

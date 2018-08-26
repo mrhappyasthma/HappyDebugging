@@ -1,11 +1,12 @@
-"""Prints the `bounds` of an object as a CGRect.
-
-Usage: pbounds <instance>
-"""
 import lldb
 import shlex
 
 def pbounds(debugger, command, result, internal_dict):
+  """Prints the bounds of an object as a CGRect.
+
+  Usage:
+    pbounds <instance>
+  """
   args = shlex.split(command)
   if len(args) != 1:
     result.Println('ERROR: Please enter the command as "pframe <instance>".')
@@ -21,4 +22,7 @@ def pbounds(debugger, command, result, internal_dict):
   debugger.GetCommandInterpreter().HandleCommand(cmd, result)
 
 def __lldb_init_module(debugger, internal_dict):
-  debugger.HandleCommand('command script add -f pbounds.pbounds pbounds')
+  cmd = ('command script add '
+         '-f pbounds.pbounds pbounds '
+         '-h "Prints the bounds of an object as a CGRect."')
+  debugger.HandleCommand(cmd)

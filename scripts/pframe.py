@@ -1,11 +1,12 @@
-"""Prints the `frame` of an object as a CGRect.
-
-Usage: pframe <instance>
-"""
 import lldb
 import shlex
 
 def pframe(debugger, command, result, internal_dict):
+  """Prints the frame of an object as a CGRect.
+
+  Usage:
+    pframe <instance>
+  """
   args = shlex.split(command)
   if len(args) != 1:
     result.Println('ERROR: Please enter the command as "pframe <instance>".')
@@ -21,4 +22,7 @@ def pframe(debugger, command, result, internal_dict):
   debugger.GetCommandInterpreter().HandleCommand(cmd, result)
 
 def __lldb_init_module(debugger, internal_dict):
-  debugger.HandleCommand('command script add -f pframe.pframe pframe')
+  cmd = ('command script add '
+         '-f pframe.pframe pframe '
+         '-h "Prints the frame of an object as a CGRect."')
+  debugger.HandleCommand(cmd)

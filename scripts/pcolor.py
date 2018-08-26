@@ -1,12 +1,13 @@
-"""Pretty prints a `UIColor` instance as a hex color and RGBA value.
-
-Usage: pcolor <UIColor_instance>
-"""
 import lldb
 import shlex
 
 
 def pcolor(debugger, command, result, internal_dict):
+  """Pretty prints a `UIColor` instance as a hex color and RGBA value.
+
+  Usage:
+    pcolor <UIColor_instance>
+  """
   args = command
 
   is_kind_of_class_check_cmd = 'po (BOOL)[' + args + ' isKindOfClass:[UIColor class]]'
@@ -52,4 +53,7 @@ def pcolor(debugger, command, result, internal_dict):
   result.Println(output)
 
 def __lldb_init_module(debugger, internal_dict):
-  debugger.HandleCommand('command script add -f pcolor.pcolor pcolor')
+  cmd = ('command script add '
+         '-f pcolor.pcolor pcolor '
+         '-h "Pretty prints a UIColor instance as a hex color and RGBA value."')
+  debugger.HandleCommand(cmd)

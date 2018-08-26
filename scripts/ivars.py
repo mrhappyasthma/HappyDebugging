@@ -1,17 +1,18 @@
-"""Print out all the ivars of an object.
-
-NOTE: The parsing of the ivar type encoding is very hacky, but it should
-       be sufficient for most cases. Therefore the resulting list may have
-       mistakes or could be missing some ivars whose type could not be parsed.
-
-Usage: ivars <object>
-"""
 import lldb
 import shlex
 
 from subprocess import call
 
 def ivars(debugger, command, result, internal_dict):
+  """Print out all the ivars of an object.
+
+  NOTE: The parsing of the ivar type encoding is very hacky, but it should
+         be sufficient for most cases. Therefore the resulting list may have
+         mistakes or could be missing some ivars whose type could not be parsed.
+
+  Usage:
+    ivars <instance>
+  """
   args = shlex.split(command)
   if len(args) != 1:
     print 'ERROR: Please enter the command as "ivars <object>".'
@@ -170,4 +171,7 @@ def ivars(debugger, command, result, internal_dict):
   result.Println(ivar_array)
 
 def __lldb_init_module(debugger, internal_dict):
-  debugger.HandleCommand('command script add -f ivars.ivars ivars')
+  cmd = ('command script add '
+         '-f ivars.ivars ivars '
+         '-h "Prints out all the ivars of an object."')
+  debugger.HandleCommand(cmd)
