@@ -36,7 +36,6 @@ def pcolor(debugger, command, result, internal_dict):
                         (int)red, (int)green, (int)blue, alpha, hexString];
     output;  // Return the NSString as the object to return from the debugger command.
   """.format(args)
-#  debugger.GetCommandInterpreter().HandleCommand(cmd, result)
 
   target = debugger.GetSelectedTarget()
   if target is None:
