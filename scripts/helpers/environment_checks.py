@@ -22,7 +22,7 @@ class EnvironmentChecks:
 
   @classmethod
   def is32BitDeviceTarget(cls, target):
-    return (cls._getArchitectureFromTarget(target) == 'arm7')
+    return (cls._getArchitectureFromTarget(target) == 'armv7')
 
   @classmethod
   def is64BitDeviceTarget(cls, target):
