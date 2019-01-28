@@ -24,7 +24,7 @@ class EnvironmentChecksTest(unittest.TestCase):
     super(EnvironmentChecksTest, self).__init__(*args, **kwargs)
     self.dummy32BitSimulatorTarget = DummyTarget('i386-apple-ios10.0.0')
     self.dummy64BitSimulatorTarget = DummyTarget('x86_64-apple-ios10.0.0')
-    self.dummy32BitDeviceTarget = DummyTarget('arm7-apple-ios10.0.0')
+    self.dummy32BitDeviceTarget = DummyTarget('armv7-apple-ios10.0.0')
     self.dummy64BitDeviceTarget = DummyTarget('arm64-apple-ios10.0.0')
 
   def testIsTarget32BitSimulatorBuild(self):
