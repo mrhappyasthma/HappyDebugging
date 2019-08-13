@@ -15,7 +15,7 @@ def ivars(debugger, command, result, internal_dict):
   """
   args = shlex.split(command)
   if len(args) != 1:
-    print 'ERROR: Please enter the command as "ivars <object>".'
+    result.Println('ERROR: Please enter the command as "ivars <object>".')
     return
 
   cmd = """
