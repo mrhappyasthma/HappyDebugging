@@ -52,7 +52,6 @@ def accessibility_tree(debugger, command, result, internal_dict):
       success ? @"YES" : @"NO";  // Return the BOOL
     """
     ret_value = target.EvaluateExpression(load_framework_cmd)
-    result.Println(ret_value.GetError().GetCString())
     if not ret_value.GetError().Success() or ret_value.GetObjectDescription().strip() == 'NO':
       result.Println('ERROR: Could not load the private UIAccessibility.framework.')
       return
