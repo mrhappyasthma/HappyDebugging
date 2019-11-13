@@ -45,3 +45,4 @@ Xcode project that we can attach a debugger to for testing.
 | setbounds `<object>` `<x>` `<y>` `<width>` `<height>` | Sets the `bounds` of an object with 4 arguments cooresponding to each field of a `CGRect`. |
 | ivars `<object>` | Prints out all ivars for a given object. (Warning: a bit hacky, may be slightly wrong sometimes.) |
 | accessibilityTree `<object>` | Prints a recursive tree of accessibility elements from a given object. |
+| accessibilityTraits `<object>` | Prints human readable strings for each a11y trait set on the given object. |
