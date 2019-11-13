@@ -5,7 +5,7 @@ from helpers.environment_checks import EnvironmentChecks
 from subprocess import call
 
 def accessibility_traits(debugger, command, result, internal_dict):
-    """Prints human readable strings of the a11y traits for a given object..
+  """Prints human readable strings of the a11y traits for a given object.
 
   Note: This command can only be run while VoiceOver is running.
 
