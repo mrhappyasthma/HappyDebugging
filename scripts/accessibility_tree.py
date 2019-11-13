@@ -20,7 +20,11 @@ def accessibility_tree(debugger, command, result, internal_dict):
     result.Println('ERROR: Please enter the command as "accessibilityTree <NSObject instance>".')
     return
 
-  if EnvironmentChecks.isSimulatorTarget(debugger.GetSelectedTarget()):
+  target = debugger.GetSelectedTarget()
+  if target is None:
+    result.Println('ERROR: Could not get selected target.')
+    return
+  if EnvironmentChecks.isSimulatorTarget(target):
     result.Println('ERROR: This command is only supported for device builds, and current debugger target is a simulator.')
     return
 
@@ -36,21 +40,20 @@ def accessibility_tree(debugger, command, result, internal_dict):
         break;
       }
     }
-    frameworkAlreadyLoaded
+    frameworkAlreadyLoaded ? @"YES" : @"NO";  // Return the BOOL
   """
-  temp_result = lldb.SBCommandReturnObject()
-  debugger.GetCommandInterpreter().HandleCommand(is_framework_loaded_cmd, temp_result)
+  ret_value = target.EvaluateExpression(is_framework_loaded_cmd)
   # If something went wrong, try to load the command.
-  if temp_result.GetError() or temp_result.GetOutput().strip() == 'NO':
+  if not ret_value.GetError().Success() or ret_value.GetObjectDescription().strip() == 'NO':
     load_framework_cmd = """
       NSString *frameworkPath = @"/System/Library/PrivateFrameworks/UIAccessibility.framework";
-      NSBundle *bundle = [NSBundle bundleWithPath:frameworkPath];
-      BOOL success = [bundle load];
-      success
+      NSBundle *bundleForFramework = [NSBundle bundleWithPath:frameworkPath];
+      BOOL success = [bundleForFramework load];
+      success ? @"YES" : @"NO";  // Return the BOOL
     """
-    temp_result = lldb.SBCommandReturnObject()
-    debugger.GetCommandInterpreter().HandleCommand(load_framework_cmd, temp_result)
-    if temp_result.GetError() or temp_result.GetOutput().strip() == 'NO':
+    ret_value = target.EvaluateExpression(load_framework_cmd)
+    result.Println(ret_value.GetError().GetCString())
+    if not ret_value.GetError().Success() or ret_value.GetObjectDescription().strip() == 'NO':
       result.Println('ERROR: Could not load the private UIAccessibility.framework.')
       return
 
